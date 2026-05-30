@@ -1,0 +1,189 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: radial-gradient(ellipse at 50% 40%, rgba(232,155,46,0.06) 0%, rgba(3,2,8,0.96) 60%);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.card {
+  background: linear-gradient(145deg,
+    rgba(20,16,42,0.95) 0%,
+    rgba(10,8,24,0.98) 100%);
+  border: 1px solid rgba(232, 155, 46, 0.18);
+  border-top-color: rgba(232,155,46,0.4);
+  border-radius: 2rem;
+  width: 100%;
+  max-width: 420px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.7),
+    0 0 80px rgba(232,155,46,0.06),
+    inset 0 1px 0 rgba(232,155,46,0.12);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft mandala in background of card */
+.card::before {
+  content: 'ॐ';
+  position: absolute;
+  font-size: 220px;
+  color: rgba(232,155,46,0.025);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  font-family: var(--font-serif);
+  animation: chakraRotate 40s linear infinite;
+  line-height: 1;
+}
+
+.omSymbol {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 16px rgba(232,155,46,0.6));
+  animation: shimmer 4s ease-in-out infinite;
+  font-family: var(--font-serif);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--saffron-light);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  animation: glowText 5s ease-in-out infinite;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--cream-dim);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+.form {
+  width: 100%;
+  gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.inputGroup label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(232,155,46,0.65);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.inputGroup input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(232,155,46,0.15);
+  border-radius: 0.875rem;
+  padding: 0.95rem 1.25rem;
+  color: var(--cream);
+  font-size: 1rem;
+  font-family: var(--font-serif);
+  transition: all 0.25s ease;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: rgba(232, 155, 46, 0.45);
+  background: rgba(232,155,46,0.04);
+  box-shadow: 0 0 0 4px rgba(232, 155, 46, 0.08);
+}
+
+.submitBtn {
+  margin-top: 0.75rem;
+  background: linear-gradient(135deg, #e89b2e, #c47820);
+  color: rgba(10,5,0,0.95);
+  border: none;
+  padding: 1.05rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(232,155,46,0.25);
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(232,155,46,0.4);
+  background: linear-gradient(135deg, #f5c040, #d4891e);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+.submitBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error {
+  background: rgba(255, 50, 50, 0.08);
+  color: rgba(255,120,120,0.9);
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 50, 50, 0.18);
+  font-family: var(--font-serif);
+}
+
+.toggle {
+  margin-top: 2rem;
+  font-size: 0.88rem;
+  color: var(--cream-muted);
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+.linkBtn {
+  background: none;
+  border: none;
+  color: var(--saffron);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  text-decoration: underline;
+  font-family: var(--font-serif);
+  font-style: normal;
+}
+
+.linkBtn:hover {
+  color: var(--saffron-light);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}

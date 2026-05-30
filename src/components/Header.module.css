@@ -1,0 +1,179 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px 14px;
+  border-bottom: 1px solid rgba(232, 155, 46, 0.12);
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 4, 18, 0.95) 0%,
+    rgba(6, 4, 18, 0.85) 100%
+  );
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 0 rgba(232,155,46,0.06), 0 4px 32px rgba(0,0,0,0.5);
+}
+
+/* Decorative top border shimmer */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(232,155,46,0.5) 25%,
+    rgba(245,208,122,0.8) 50%,
+    rgba(232,155,46,0.5) 75%,
+    transparent 100%);
+  animation: shimmerLine 4s ease-in-out infinite;
+}
+
+@keyframes shimmerLine {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.omSymbol {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,155,46,0.2) 0%, rgba(139,90,43,0.1) 100%);
+  border: 1px solid rgba(232, 155, 46, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  animation: glowPulse 4s ease-in-out infinite;
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+
+/* Rotating ring around OM */
+.omSymbol::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(232,155,46,0.25);
+  border-top-color: rgba(232,155,46,0.7);
+  animation: spin 8s linear infinite;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--saffron-light);
+  letter-spacing: 1.2px;
+  line-height: 1.2;
+  animation: glowText 5s ease-in-out infinite;
+}
+
+.subtitle {
+  font-size: 9px;
+  color: var(--saffron-dim);
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  opacity: 0.8;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.emotionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  animation: fadeIn 0.3s ease;
+  font-family: var(--font-serif);
+  backdrop-filter: blur(8px);
+}
+
+.emotionDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: divinePulse 2s ease-in-out infinite;
+}
+
+.archBtn {
+  background: rgba(232, 155, 46, 0.04);
+  border: 1px solid rgba(232, 155, 46, 0.18);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  color: rgba(232, 155, 46, 0.55);
+  font-size: 9px;
+  font-family: var(--font-mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+
+.archBtn:hover {
+  color: var(--saffron);
+  border-color: rgba(232, 155, 46, 0.4);
+  background: rgba(232, 155, 46, 0.08);
+  box-shadow: 0 0 12px rgba(232,155,46,0.1);
+}
+
+.archBtnActive {
+  background: rgba(232, 155, 46, 0.12);
+  border-color: rgba(232, 155, 46, 0.4);
+  color: var(--saffron);
+  box-shadow: 0 0 16px rgba(232,155,46,0.15);
+}
+
+.logoutBtn {
+  background: rgba(255, 50, 50, 0.04);
+  border: 1px solid rgba(255, 50, 50, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  color: rgba(255, 100, 100, 0.6);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background: rgba(255, 50, 50, 0.12);
+  border-color: rgba(255, 50, 50, 0.28);
+  color: #ff5555;
+}
+
+@media (max-width: 560px) {
+  .header { padding: 12px 16px; }
+  .title  { font-size: 14px; letter-spacing: 0.8px; }
+  .subtitle { display: none; }
+  .omSymbol { width: 40px; height: 40px; font-size: 18px; }
+}

@@ -1,0 +1,266 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+  animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.wrapperUser      { align-items: flex-end; }
+.wrapperAssistant { align-items: flex-start; }
+
+/* ── Avatar ── */
+.avatarRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(232,155,46,0.3), rgba(139,90,43,0.15));
+  border: 1px solid rgba(232,155,46,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 0 16px rgba(232,155,46,0.3), 0 0 32px rgba(232,155,46,0.1);
+  flex-shrink: 0;
+  animation: glowPulse 5s ease-in-out infinite;
+  position: relative;
+}
+
+.avatar::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid rgba(232,155,46,0.2);
+  border-top-color: rgba(232,155,46,0.5);
+  animation: spin 10s linear infinite;
+}
+
+.avatarLabel {
+  font-size: 9px;
+  color: rgba(232, 155, 46, 0.45);
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+/* ── Bubble ── */
+.bubble {
+  max-width: 80%;
+  position: relative;
+}
+
+.bubbleUser {
+  background: linear-gradient(135deg,
+    rgba(139,90,43,0.6) 0%,
+    rgba(100,60,25,0.55) 100%);
+  border: 1px solid rgba(232,155,46,0.2);
+  border-radius: 20px 20px 4px 20px;
+  padding: 13px 18px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(232,155,46,0.1);
+}
+
+.bubbleAssistant {
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.04) 0%,
+    rgba(232,155,46,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top-color: rgba(232,155,46,0.15);
+  border-radius: 4px 20px 20px 20px;
+  padding: 18px 22px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(232,155,46,0.06);
+}
+
+/* Subtle left accent line for assistant */
+.bubbleAssistant::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(232,155,46,0.4), transparent);
+  border-radius: 1px;
+}
+
+/* ── Text ── */
+.userText {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255, 244, 218, 0.96);
+  font-family: var(--font-serif);
+}
+
+.assistantText {
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  line-height: 2;
+  color: rgba(255, 244, 218, 0.9);
+}
+
+.mdParagraph {
+  margin-bottom: 1em;
+}
+.mdParagraph:last-child {
+  margin-bottom: 0;
+}
+
+.mdBold {
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.mdItalic {
+  color: rgba(255, 244, 218, 0.8);
+  font-style: italic;
+}
+
+/* ── Typing indicator ── */
+.typingDots {
+  display: flex;
+  gap: 6px;
+  padding: 4px 2px;
+  align-items: center;
+}
+
+.typingDots span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--saffron);
+}
+
+.typingDots span:nth-child(1) { animation: pulseDot 1.2s ease-in-out 0.0s infinite; }
+.typingDots span:nth-child(2) { animation: pulseDot 1.2s ease-in-out 0.2s infinite; }
+.typingDots span:nth-child(3) { animation: pulseDot 1.2s ease-in-out 0.4s infinite; }
+
+/* ── Verse card ── */
+.verses {
+  max-width: 80%;
+  width: 100%;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.verseCard {
+  background: linear-gradient(135deg,
+    rgba(232,155,46,0.09) 0%,
+    rgba(74,154,186,0.04) 50%,
+    rgba(139,90,43,0.05) 100%);
+  border: 1px solid rgba(232, 155, 46, 0.22);
+  border-left: 3px solid var(--saffron);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 16px 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow shimmer on verse card */
+.verseCard::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; right: 100%; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(232,155,46,0.05), transparent);
+  animation: verseShimmer 4s ease-in-out 1s infinite;
+}
+
+@keyframes verseShimmer {
+  0% { left: -100%; right: 100%; }
+  100% { left: 100%; right: -100%; }
+}
+
+.verseVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.verseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.verseRef {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--saffron);
+  letter-spacing: 1.5px;
+}
+
+.verseConcept {
+  font-size: 10px;
+  background: rgba(232, 155, 46, 0.15);
+  color: var(--saffron);
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  border: 1px solid rgba(232,155,46,0.2);
+}
+
+.verseSanskrit {
+  font-size: 12.5px;
+  color: rgba(232,155,46,0.6);
+  font-style: italic;
+  margin-bottom: 9px;
+  font-family: var(--font-serif);
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+
+.verseText {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(255, 244, 218, 0.85);
+  font-style: italic;
+}
+
+/* ── Footer ── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  max-width: 80%;
+}
+
+.disclaimer {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.16);
+  font-style: italic;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  font-family: var(--font-serif);
+}
+
+.timing {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(232,155,46,0.2);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .bubble  { max-width: 94%; }
+  .verses  { max-width: 94%; }
+  .footer  { max-width: 94%; }
+}

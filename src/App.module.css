@@ -1,0 +1,37 @@
+.root {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 18% 50%, rgba(232,155,46,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 82% 80%, rgba(74,154,186,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 10%, rgba(139,92,246,0.04) 0%, transparent 55%),
+    linear-gradient(170deg, #060412 0%, #030208 50%, #060412 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.chatBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 24px 12px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .chatBody { padding: 16px 14px 8px; }
+}

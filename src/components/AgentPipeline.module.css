@@ -1,0 +1,59 @@
+.bar {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding: 10px 28px;
+  background: linear-gradient(to right,
+    rgba(232,155,46,0.05) 0%,
+    rgba(74,154,186,0.04) 50%,
+    rgba(232,155,46,0.05) 100%);
+  border-bottom: 1px solid rgba(232, 155, 46, 0.1);
+  scrollbar-width: none;
+  animation: slideDown 0.25s ease;
+  position: relative;
+}
+
+.bar::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 5%; right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,155,46,0.3), transparent);
+}
+
+.bar::-webkit-scrollbar { display: none; }
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  animation: shimmer 1.8s ease-in-out infinite;
+  padding: 0 16px;
+  position: relative;
+}
+
+.step:not(:last-child)::after {
+  content: '›';
+  position: absolute;
+  right: 0;
+  color: rgba(232, 155, 46, 0.2);
+  font-size: 14px;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--saffron);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(232,155,46,0.6);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(232, 155, 46, 0.55);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
